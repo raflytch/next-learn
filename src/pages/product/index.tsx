@@ -1,21 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useProductQuery } from "@/hooks/useProductsQuery";
 
 const ProductPage = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const { data, isLoading, isError } = useProductQuery();
 
-  const { push } = useRouter();
-
-  useEffect(() => {
-    if (!isLogin) {
-      push("/auth/login");
-    }
-  }, []);
   return (
     <>
-      <h1>This Is Product Page</h1>
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error</p>}
+      {data?.map((product) => (
+        <div key={product.id}>
+          <h1>{product.name}</h1>
+          <p>{product.price}</p>
+          <p>{product.size}</p>
+        </div>
+      ))}
     </>
   );
 };
