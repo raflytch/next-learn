@@ -6,7 +6,8 @@ type AppShellProps = {
   children: React.ReactNode;
 };
 
-const disabledNavbar = ["/auth/login", "/auth/register"];
+const disabledNavbar = ["/auth/login", "/auth/register", "/404"];
+const disabledFooter = ["/auth/login", "/auth/register", "/404"];
 
 const AppShell = ({ children }: AppShellProps) => {
   const { pathname } = useRouter();
@@ -15,7 +16,7 @@ const AppShell = ({ children }: AppShellProps) => {
       <main>
         {!disabledNavbar.includes(pathname) && <Navbar />}
         {children}
-        <Footer />
+        {!disabledFooter.includes(pathname) && <Footer />}
       </main>
     </>
   );
