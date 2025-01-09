@@ -9,6 +9,7 @@ const fetchProduct = async (): Promise<ProductType[]> => {
   }
 
   const data = await res.json();
+  console.log(data);
 
   return data.data;
 };
