@@ -9,7 +9,7 @@ const fetchProduct = async (): Promise<ProductType[]> => {
   }
 
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
 
   return data.data;
 };
@@ -18,5 +18,7 @@ export const useProductQuery = () => {
   return useQuery<ProductType[], Error>({
     queryKey: ["products"],
     queryFn: fetchProduct,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 };

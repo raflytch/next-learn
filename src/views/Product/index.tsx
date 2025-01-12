@@ -1,11 +1,13 @@
 import { ProductType } from "@/lib/types/product";
 import Image from "next/image";
+import Link from "next/link";
 
 const ProductView = ({ products }: { products: ProductType[] }) => {
   return (
     <div className="flex flex-wrap gap-4 justify-center mt-4">
       {products.map((product: ProductType) => (
-        <div
+        <Link
+          href={`/product/${product.id}`}
           key={product.id}
           className="w-[calc(50%-8px)] sm:w-[calc(33.333%-12px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)]"
         >
@@ -34,7 +36,7 @@ const ProductView = ({ products }: { products: ProductType[] }) => {
               <p className="text-xs text-gray-400 mt-1">{product.category}</p>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
